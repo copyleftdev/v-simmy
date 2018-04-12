@@ -40,11 +40,18 @@ class PlacesProvider(object):
                     "place": random.choice(self.places),
                     "api_query": "{}+in+{}".format(place, country)}
 
+        return rnd_dict
+
     def get_random_state_and_place(self):
         state, place = [
-            random.choice(self.state),
+            random.choice(self.states),
             random.choice(self.places)
         ]
-        rnd_dict = {"country": random.choice(self.state),
+        rnd_dict = {"state": random.choice(self.states),
                     "place": random.choice(self.places),
                     "api_query": "{}+in+{}".format(place, state)}
+        return rnd_dict
+
+
+p = PlacesProvider()
+print(p.get_random_state_and_place())
