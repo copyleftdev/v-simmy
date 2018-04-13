@@ -1,14 +1,18 @@
-from GoogleUtils import GoogleDirections
-from GeoUtils import PolyTools
+from libs.GoogleUtils import GoogleDirections
+from libs.GeoUtils import PolyTools
 
 
 class RouteGenerator(object):
 
-    def get_route_steps_poly(self, org=None, dest=None):
+        def __init__(self):
+            self.go = GoogleDirections()
+            self.pt = PolyTools()
 
-        go = GoogleDirections()
-        plines = go.get_direction_polylines(org, dest)
+        def get_route_steps_poly(self, org=None, dest=None):
+            plines = self.go.get_direction_polylines(org, dest)
+            route_steps = self.pt.decode_polylines(plines)
+            return route_steps
 
-        pt = PolyTools()
-        route_steps = pt.decode_polylines(plines)
-        return route_steps
+        def get_full_route_details(self, org=None, dest=None):
+            full_details = self.go.get_full_directions_payload(org, dest)
+            return full_details
