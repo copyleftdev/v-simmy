@@ -8,8 +8,9 @@ class RestRouter(object):
         self.route = route
 
     def send_post(self, payload):
-        url = "http://{}/{}".format(self.host,self.route)
-        req = requests.post(url, data=payload)
+        header = {"content-type":"application/json"}
+        url = "http://{}/{}".format(self.host, self.route)
+        req = requests.post(url, data=payload, header=header)
 
     def get_res(self, params):
         url = "{}:{}/{}{}".format(self.host, self.port, self.route, params)
