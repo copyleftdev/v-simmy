@@ -3,3 +3,4 @@ sandbox.py
 __pycache__/
 Pipfile
 Pipfile.lock
+*.pyc
