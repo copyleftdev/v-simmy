@@ -5,7 +5,7 @@ import time
 from geopy.geocoders import Nominatim
 import arrow
 import random
-
+import json
 
 
 class CarSim(object):
@@ -15,7 +15,7 @@ class CarSim(object):
 
     def sim_init(self):
         geolocator = Nominatim()
-        post_status = RestRouter("127.0.0.1:8000", "sim_status")
+        post_status = RestRouter("127.0.0.1:8000", "/sim_status")
 
         pl = GooglePlacesTextSearch()
         addl1 = pl.get_list_of_adresses("resterants+in+Pasadena+Ca")
@@ -52,11 +52,11 @@ class CarSim(object):
                                              cur_start_location_lng],
                                'from_time': str(utc),
                                'instruction': html_intruction_detail}
-            post_status.send_post(sim_from_status)
+            post_status.send_post(json.dumps(sim_from_status))
             print(sim_from_status)
             time.sleep(duration_value)
             sim_to_status = {'sim_id': self.sim_id, 'to_address': str(end_tag),
                              'to_cord': [cur_end_location_lat, cur_end_location_lng],
                              'to_time': str(utc), 'elapsed': local.humanize()}
-            post_status.send_post(sim_to_status)
+            post_status.send_post(json.dumps(sim_to_status))
             print(sim_to_status)
