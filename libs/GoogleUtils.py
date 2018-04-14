@@ -11,11 +11,23 @@ class GooglePlacesTextSearch(object):
         self.tsroute = "/maps/api/place/textsearch/json"
         self.dtlroute = "/maps/api/place/details/json"
 
-    def get_places_via_query(self, query=None):
-        params = "?query={}&key={}".format(query, PLACE_API_KEY)
+    def get_places_via_query(self, query=None, radius=100):
+        params = "?query={}&key={}&radius={}".format(query, PLACE_API_KEY,
+                                                     radius)
         req = requests.get(self.base_url + self.tsroute + params)
         res = req.json()
         return res
+
+    def get_list_of_adresses(self, query=None, radius=100):
+        params = "?query={}&key={}&radius={}".format(query, PLACE_API_KEY,
+                                                     radius)
+        req = requests.get(self.base_url + self.tsroute + params)
+        res = req.json()
+        address_list = []
+        for a in res['results']:
+            address_list.append(a['formatted_address'])
+        return address_list
+
 
     def get_place_details_by_placeid(self, pid=None):
         params = "?placeid={}&key={}".format(pid, PLACE_API_KEY)

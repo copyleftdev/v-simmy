@@ -1,0 +1,20 @@
+def pairwise(iterable):
+    a, b = tee(iterable)
+    next(b, None)
+    return zip(a, b)
+
+
+# for seg1,seg2 in pairwise(payload):
+#     miles = geodesic(seg1, seg2).miles
+#     seg1_loc = geolocator.reverse("{}, {}".format(seg1[0],seg2[1]))
+#     seg2_loc = geolocator.reverse("{}, {}".format(seg2[0],seg2[1]))
+#     print(seg1_loc)
+#     print(seg2_loc)
+
+
+
+
+# for p in payload:
+#     curloc = geolocator.reverse("{}, {}".format(p[0],p[1]))
+#     time.sleep(1)
+#     print(curloc.address)

@@ -52,7 +52,3 @@ class PlacesProvider(object):
                     "place": random.choice(self.places),
                     "api_query": "{}+in+{}".format(place, state)}
         return rnd_dict
-
-
-p = PlacesProvider()
-print(p.get_random_state_and_place())
