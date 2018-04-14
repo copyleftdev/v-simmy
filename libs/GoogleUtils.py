@@ -2,7 +2,7 @@ import requests
 
 API_BASE_URL = "https://maps.googleapis.com"
 DIR_API_KEY = "AIzaSyAOJbDafHsGHOG7zukkTFAM0SL0XzRypE0"
-PLACE_API_KEY = "AIzaSyC3_yqiiB7JHW0OhJ7aHx_whExJespN-qE"
+PLACE_API_KEY = "AIzaSyC7RihmXZa33NPiUpXOSM-5_9Nalyiqwpg"
 
 class GooglePlacesTextSearch(object):
 
