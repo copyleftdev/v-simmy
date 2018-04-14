@@ -3,7 +3,7 @@ import uuid
 import concurrent.futures
 
 
-NUM_WORKERS = 10
+NUM_WORKERS = 1
 
 def fleet_swarm(sim_id):
     c = CarSim(sim_id)
