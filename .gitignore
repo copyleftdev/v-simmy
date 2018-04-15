@@ -4,3 +4,4 @@ __pycache__/
 Pipfile
 Pipfile.lock
 *.pyc
+.DS_Store
