@@ -16,7 +16,8 @@ pip install -r requirements.text
 │   ├── DataUtils.py all this class will store all Database/REST/other
 │   ├── GeoUtils.py adtraction of polyline to decode/encode polylines
 │   ├── GoogleUtils.py Helper Class to make calls to Places/Directions API
-│   ├── PlacesUtils.py Helper Calss to get supported_place, counties and states
+│   ├── PlacesUtils.py Helper Class to get supported_place, counties and states
+│   ├── PerfUtils.py Helper Nothing in it , but can be developed to start collecting performace information from the infrastructure.
 │   ├── RouteUtils.py Helper Class to get vvaried payloads.
 │   ├── VehicleEmuDriver.py This is the Vehicle Class all logic of sim is here.
 │   └── data
@@ -53,8 +54,24 @@ I attempted to create a loop route by making two api calls
  * You can create a realitic payload based on time, you can observe the performance of your infrastructure as you scale the workers up.
 
 #### Cons
-* It is time based so if the route takes several hours, each v-sim may take along time to run.
+* It is time based so if the route takes several hour's, each v-sim may take along time to run.
 
 
 
-### notes
+### Load Test Trategy from within the sim
+In this case the load testing would have to be conducted from the simulator outward.
+* Generate a load of users each sim would need to connect to a given real endpoint, database, etc.
+* there is a stubbed out class in libs named PerfUtils , it would have several  functions designed to capture the performance
+* of the above resource types.
+
+### Load Test Strategy from outside the sim
+Taditionally load tests are conducted on  abody of systems [web-server, endpoint , db].
+* a baseline would need to be established from production average load.
+* a test plan for [Stress, Spike, Endurance, Scalability, and Volume] would need to be developed.
+
+
+## Refactoring
+This is a poc , it will not scale well. I would use the following tech stack to
+make sure the sim could scale.
+* Language : Golang ,  RabbitMQ, using Worker queues(competing consumer pattern)
+* Currently this poc makes calls  to google, it stops working when  you burn you're daily call rate limit. I would rather use the calls to do a daily collection of Places, Directions and cache them, over time I would have a pretty nice set of data to run sims with.
