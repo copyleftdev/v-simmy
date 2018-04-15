@@ -13,15 +13,21 @@ class CarSim(object):
 
         self.sim_id = sim_id
 
-    def sim_init(self):
+    def sim_init(self, static_vectors=False):
         geolocator = Nominatim()
         post_status = RestRouter("127.0.0.1:8000", "/sim_status")
 
         pl = GooglePlacesTextSearch()
-        addl1 = pl.get_list_of_adresses("resterants+in+Pasadena+Ca")
-        addl2 = pl.get_list_of_adresses("movie_theater+in+Pasadena+Ca")
-        add1 = random.choice(addl1)
-        add2 = random.choice(addl2)
+        if static_vectors is False:
+
+            addl1 = pl.get_list_of_adresses("resterants+in+Pasadena+Ca")
+            addl2 = pl.get_list_of_adresses("movie_theater+in+Pasadena+Ca")
+            add1 = random.choice(addl1)
+            add2 = random.choice(addl2)
+        else:
+            add1 = "760 W Naomi Ave, Arcadia, CA 91007"
+            add2 = "1325 S Baldwin Ave, Arcadia, CA 91007"
+
 
         c = RouteGenerator()
         payload = c.get_route_loop(add1, add2)
