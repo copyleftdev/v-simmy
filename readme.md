@@ -9,6 +9,7 @@ pip install -r requirements.text
 
 
 ### V-simmy Anatomy
+```
 ├── docs
 │   ├── api_keys.txt bad idea but all api keys for google maps
 │   └── rd_notes.txt general notes during rearch.
@@ -27,7 +28,7 @@ pip install -r requirements.text
 ├── readme.md you are currently reading this file.
 ├── requirements.txt s list of all requirements needed to run this tool.
 └── start_sim.py the main contructor to trigger sim ```python start_sim.py N```.
-
+```
 ### Basic  Breakdown of Simulator
 I attempted to create a loop route by making two api calls
  the fist call is org=add1 dest=add2 and making a second call flipping the org, and dest I then collect all the steps into one list , the sim will take the steps and create a pause using the duration information in the steps. when the sim has completed the from -> two I print the (from) and (to) details to the screen along with a post call to a simple rest endpoint to assert a json POST call is being made to the endpoint.
