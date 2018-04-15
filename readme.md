@@ -18,7 +18,7 @@ pip install -r requirements.text
 │   ├── GeoUtils.py adtraction of polyline to decode/encode polylines
 │   ├── GoogleUtils.py Helper Class to make calls to Places/Directions API
 │   ├── PlacesUtils.py Helper Class to get supported_place, counties and states
-│   ├── PerfUtils.py Helper Nothing in it , but can be developed to start collecting performace information from the infrastructure.
+│   ├── PerfUtils.py Helper Nothing in it , but can be developed to start collecting performance information from the infrastructure.
 │   ├── RouteUtils.py Helper Class to get vvaried payloads.
 │   ├── VehicleEmuDriver.py This is the Vehicle Class all logic of sim is here.
 │   └── data
@@ -59,14 +59,14 @@ I attempted to create a loop route by making two api calls
 
 
 
-### Load Test Trategy from within the sim
+### Load Test Strategy from within the sim
 In this case the load testing would have to be conducted from the simulator outward.
 * Generate a load of users each sim would need to connect to a given real endpoint, database, etc.
 * there is a stubbed out class in libs named PerfUtils , it would have several  functions designed to capture the performance
-* of the above resource types.
+* of the above resource types a the sim was running.
 
 ### Load Test Strategy from outside the sim
-Taditionally load tests are conducted on  abody of systems [web-server, endpoint , db].
+Traditionally load tests are conducted on  a body of systems [web servers, endpoint , db].
 * a baseline would need to be established from production average load.
 * a test plan for [Stress, Spike, Endurance, Scalability, and Volume] would need to be developed.
 
@@ -76,3 +76,8 @@ This is a poc , it will not scale well. I would use the following tech stack to
 make sure the sim could scale.
 * Language : Golang ,  RabbitMQ, using Worker queues(competing consumer pattern)
 * Currently this poc makes calls  to google, it stops working when  you burn you're daily call rate limit. I would rather use the calls to do a daily collection of Places, Directions and cache them, over time I would have a pretty nice set of data to run sims with.
+
+
+## Things I learned in this exercise
+* "geo" ain't easy.
+* I have allot to learn about Geospatial Development, I bought a few book's after  doing this exercise.
