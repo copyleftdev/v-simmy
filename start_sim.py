@@ -1,9 +1,9 @@
 from libs.VehicleEmuDriver import CarSim
 import uuid
 import concurrent.futures
+import sys
 
-
-NUM_WORKERS = 1
+NUM_WORKERS = sys.argv[1]
 
 def fleet_swarm(sim_id):
     c = CarSim(sim_id)
