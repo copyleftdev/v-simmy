@@ -4,6 +4,7 @@ API_BASE_URL = "https://maps.googleapis.com"
 DIR_API_KEY = "AIzaSyAOJbDafHsGHOG7zukkTFAM0SL0XzRypE0"
 PLACE_API_KEY = "AIzaSyC7RihmXZa33NPiUpXOSM-5_9Nalyiqwpg"
 
+
 class GooglePlacesTextSearch(object):
 
     def __init__(self):
@@ -27,7 +28,6 @@ class GooglePlacesTextSearch(object):
         for a in res['results']:
             address_list.append(a['formatted_address'])
         return address_list
-
 
     def get_place_details_by_placeid(self, pid=None):
         params = "?placeid={}&key={}".format(pid, PLACE_API_KEY)

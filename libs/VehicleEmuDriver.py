@@ -28,7 +28,6 @@ class CarSim(object):
             add1 = "760 W Naomi Ave, Arcadia, CA 91007"
             add2 = "1325 S Baldwin Ave, Arcadia, CA 91007"
 
-
         c = RouteGenerator()
         payload = c.get_route_loop(add1, add2)
 
@@ -37,25 +36,26 @@ class CarSim(object):
 
         for d in payload:
             html_intruction_detail = d['html_instructions']
-            cur_start_location_lat = d['start_location']['lat']
-            cur_start_location_lng = d['start_location']['lng']
-            cur_end_location_lat = d['end_location']['lat']
-            cur_end_location_lng = d['end_location']['lng']
+            cur_str_lat = d['start_location']['lat']
+            cur_start_lng = d['start_location']['lng']
+            cur_end_lat = d['end_location']['lat']
+            cur_end_lng = d['end_location']['lng']
             distance_text = d['distance']['text']
             distance_value = d['distance']['value']
             duration_text = d['duration']['text']
             duration_value = d['duration']['value']
 
-            start_tag = geolocator.reverse("{}, {}".format(cur_start_location_lat,
-                                                           cur_start_location_lng))
-            end_tag = geolocator.reverse("{}, {}".format(cur_end_location_lat,
-                                                         cur_end_location_lng))
+            start_tag = geolocator.reverse("{}, {}".format(cur_str_lat,
+                                                           cur_start_lng))
+            end_tag = geolocator.reverse("{}, {}".format(cur_end_lat,
+                                                         cur_end_lng))
             utc = arrow.utcnow()
             local = utc.to('US/Pacific')
 
-            sim_from_status = {'sim_id': self.sim_id, 'from_address': str(start_tag),
-                               'from_cord': [cur_start_location_lat,
-                                             cur_start_location_lng],
+            sim_from_status = {'sim_id': self.sim_id,
+                               'from_address': str(start_tag),
+                               'from_cord': [cur_str_lat,
+                                             cur_start_lng],
                                'from_time': str(utc),
                                'instruction': html_intruction_detail}
             # Turned post off
@@ -63,7 +63,7 @@ class CarSim(object):
             print(sim_from_status)
             time.sleep(duration_value)
             sim_to_status = {'sim_id': self.sim_id, 'to_address': str(end_tag),
-                             'to_cord': [cur_end_location_lat, cur_end_location_lng],
+                             'to_cord': [cur_end_lat, cur_end_lng],
                              'to_time': str(utc), 'elapsed': local.humanize()}
             # Turned post off
             # post_status.send_post(json.dumps(sim_to_status))
