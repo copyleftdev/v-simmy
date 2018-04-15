@@ -63,7 +63,7 @@ I attempted to create a loop route by making two api calls
 In this case the load testing would have to be conducted from the simulator outward.
 * Generate a load of users each sim would need to connect to a given real endpoint, database, etc.
 * there is a stubbed out class in libs named PerfUtils , it would have several  functions designed to capture the performance
-* of the above resource types a the sim was running.
+of the above resource types a the sim was running.
 
 ### Load Test Strategy from outside the sim
 Traditionally load tests are conducted on  a body of systems [web servers, endpoint , db].
