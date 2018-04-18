@@ -3,7 +3,7 @@ import uuid
 import concurrent.futures
 import sys
 
-NUM_WORKERS = sys.argv[1]
+NUM_WORKERS = int(sys.argv[1])
 
 def fleet_swarm(sim_id):
     c = CarSim(sim_id)
