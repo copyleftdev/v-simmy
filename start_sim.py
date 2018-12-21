@@ -5,9 +5,11 @@ import sys
 
 NUM_WORKERS = int(sys.argv[1])
 
+
 def fleet_swarm(sim_id):
     c = CarSim(sim_id)
     c.sim_init()
+
 
 sim_ids = []
 for x in range(NUM_WORKERS):
